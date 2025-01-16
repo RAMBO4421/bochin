@@ -1,0 +1,130 @@
+{
+	"data":[
+	{
+		"DT_RowId":"1",
+		"libelle":"Equipe de vente",
+		"description":"Equipe de vente",
+		"status":"Actif",
+		"type":"vente",
+		"adate":"2021-01-07",
+		"REPONSABLE":"Hassen Ellouze",
+		"Employes":"Hassen Ellouze,ayman,ammar"
+	},
+	{
+		"libelle":"Equipe de marketing",
+		"description":"Equipe de vente",
+		"status":"Actif",
+		"type":"vente",
+		"adate":"2021-01-07",
+		"REPONSABLE":"Hassen Ellouze",
+		"Employes":"Hassen Ellouze,Ayman,Ammar",
+		"Memebres":[
+			{
+				"DT_RowId":"1",
+				"Nom":"Ellouze",
+				"Prenom":"Hassen",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			},
+			{
+				"DT_RowId":"2",
+				"Nom":"Ayman",
+				"Prenom":"Ayman",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			},
+			{
+				"DT_RowId":"3",
+				"Nom":"Ammar",
+				"Prenom":"Ammar",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			}
+		]
+	},
+	{
+		"DT_RowId":"3",
+		"libelle":"Equipe des relations avec les clients",
+		"description":"Equipe de vente",
+		"status":"Actif",
+		"type":"vente",
+		"adate":"2021-01-07",
+		"REPONSABLE":"Hassen Ellouze",
+		"Employes":"Hassen Ellouze,ayman,ammar",
+		"Memebres":[
+			{
+				"DT_RowId":"1",
+				"Nom":"Ellouze",
+				"Prenom":"Hassen",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			},
+			{
+				"DT_RowId":"2",
+				"Nom":"Ayman",
+				"Prenom":"Ayman",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			}
+		
+		]
+	},
+	{
+		"DT_RowId":"4",
+		"libelle":"Equipe de vente",
+		"description":"Equipe de vente",
+		"status":"Actif",
+		"type":"vente",
+		"adate":"2021-01-07",
+		"REPONSABLE":"XXXXX",
+		"Employes":"Hassen Ellouze,ayman,ammar",
+		"Memebres":[
+			{
+				"DT_RowId":"1",
+				"Nom":"Ellouze",
+				"Prenom":"Hassen",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			},
+			{
+				"DT_RowId":"2",
+				"Nom":"Ayman",
+				"Prenom":"Ayman",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			},
+			{
+				"DT_RowId":"3",
+				"Nom":"Ammar",
+				"Prenom":"Ammar",
+				"Ad":"Actif",
+				"Tel":"5954236",
+				"Fonction":"2021-01-07",
+				"adtae":"23/06/2021"
+			
+			}
+		]
+	}
+	]
+}

@@ -1,0 +1,57 @@
+{
+    "version": 4.5,
+    "lists": [{
+            "title": "Liste des patients",
+            "icon": "{{iconPrefix}} fa-users",
+            "href": "patients.html"
+        },
+        {
+            "title": "Facturation",
+            "icon": "{{iconPrefix}} fa-file-invoice-dollar",
+            "items": [{
+                    "title": "Soins",
+                    "icon": "{{iconPrefix}} fa-syringe",
+                    "href": "javascript:void(0);",
+                    "span": {
+                        "class": "menu_soins",
+                        "text": ""
+                    }
+                },
+                {
+                    "title": "Honoraires",
+                    "icon": "{{iconPrefix}} fa-user-md",
+                    "href": "javascript:void(0);",
+                    "span": {
+                        "class": "menu_honoraires",
+                        "text": ""
+                    }
+                },
+                {
+                    "title": "Pharmacie",
+                    "icon": "{{iconPrefix}} fa-capsules",
+                    "href": "javascript:void(0);",
+                    "span": {
+                        "class": "menu_pharmacie",
+                        "text": ""
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Liste des encaissements",
+            "icon": "{{iconPrefix}} fa-cash-register",
+            "href": "encaissements.html"
+        },
+        {
+            "title": "Liste des produits",
+            "icon": "{{iconPrefix}} fa-users",
+            "href": "produits.html"
+        }
+        ,
+        {
+            "title": "Liste des Paillasses",
+           
+            "href": "listePaillasses.html"
+        }
+    ]
+}

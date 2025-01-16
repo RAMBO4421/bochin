@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{{> include/_copyright-header}}
+<html lang="en">
+	<head>
+		{{> include/_head}}
+
+		{{!-- Optional: page related CSS --}}
+		{{#>head-block}}{{/head-block}}
+	</head>
+	<!-- BEGIN Body -->
+	<body class="mod-bg-1 mod-nav-link header-function-fixed nav-function-fixed nav-function-top {{preemptiveclass}}">
+
+		{{!-- save-settings-script --}}
+		{{> include/_scripts-loading-saving}}
+
+		<!-- BEGIN Page Wrapper -->
+		<div class="page-wrapper">
+
+					<!-- BEGIN Page Content -->
+					<!-- the #js-page-content id is needed for some plugins to initialize -->
+                    <main id="js-page-content" role="main" class="page-content">
+                        {{#if preemptiveclass}}
+                            <!-- Page heading removed for composed layout -->
+                        {{else}}
+                            {{> include/_page-breadcrumb }}
+                            <div class="subheader">{{> include/_page-heading }}{{#> subheader-block}}{{/subheader-block}}</div>
+                        {{/if}}
+                        {{#>content-block}}{{/content-block}}
+                    </main>
+					<!-- END Page Content -->
+				</div>
+		<!-- END Page Wrapper -->
+
+        <span id="app-name" style="display: none">{{app-name}}</span>
+        <span id="app-version" style="display: none">{{version}}</span>
+	</body>
+	<!-- END Body -->
+</html>

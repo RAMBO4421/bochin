@@ -1,0 +1,522 @@
+[
+  {
+    "nodeId": "O-1",
+    "parentNodeId": null,
+    "width": 342,
+    "height": 146,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/cto.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "CIRCLE",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \">Ian Devling </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">Cheaf Executive Officer  </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Business first</div>\n\n                 <div style=\"margin-left:196px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CTO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 4,
+    "totalSubordinates": 1515
+  },
+  {
+    "nodeId": "O-2",
+    "parentNodeId": "O-1",
+    "width": 331,
+    "height": 139,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/general.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "CIRCLE",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \">Davolio Nancy </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">CTO  </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Business one</div>\n\n                 <div style=\"margin-left:190.5px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 9,
+    "totalSubordinates": 812
+  },
+  {
+    "nodeId": "O-3",
+    "parentNodeId": "O-1",
+    "width": 348,
+    "height": 147,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/female.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "ORIGINAL",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \"> Leverling Janet </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">CTO  </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Business two </div>\n\n                 <div style=\"margin-left:199px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 3,
+    "totalSubordinates": 413
+  },
+  {
+    "nodeId": "O-4",
+    "parentNodeId": "O-1",
+    "width": 345,
+    "height": 140,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/female.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "ORIGINAL",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \"> Leverling Janet </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">CTO  </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Business three</div>\n\n                 <div style=\"margin-left:197.5px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 3,
+    "totalSubordinates": 142
+  },
+  {
+    "nodeId": "O-5",
+    "parentNodeId": "O-1",
+    "width": 311,
+    "height": 134,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/female.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "ROUNDED",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \"> Leverling Janet </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">CTO  </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Business four </div>\n\n                 <div style=\"margin-left:180.5px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 3,
+    "totalSubordinates": 144
+  },
+  {
+    "nodeId": "O-6",
+    "parentNodeId": "O-2",
+    "width": 321,
+    "height": 150,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/female.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "ROUNDED",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \"> Leverling Janet </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">CTO  </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \"> Finance Department</div>\n\n                 <div style=\"margin-left:185.5px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": true,
+    "directSubordinates": 9,
+    "totalSubordinates": 429
+  },
+  {
+    "nodeId": "O-9",
+    "parentNodeId": "O-2",
+    "width": 308,
+    "height": 135,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/general.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "ROUNDED",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \">Buchanan Steven </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">Head of direction </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Facility Management</div>\n\n                 <div style=\"margin-left:179px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 9,
+    "totalSubordinates": 136
+  },
+  {
+    "nodeId": "O-10",
+    "parentNodeId": "O-2",
+    "width": 339,
+    "height": 144,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/general.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "ORIGINAL",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \">Suyama Michael </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">Senior sales manager </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">IT Consulting</div>\n\n                 <div style=\"margin-left:194.5px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 0,
+    "totalSubordinates": 0
+  },
+  {
+    "nodeId": "O-11",
+    "parentNodeId": "O-2",
+    "width": 324,
+    "height": 133,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/general.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "CIRCLE",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \">King Robert </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">Senior Sales Manager </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Customer Service</div>\n\n                 <div style=\"margin-left:187px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 2,
+    "totalSubordinates": 26
+  },
+  {
+    "nodeId": "O-12",
+    "parentNodeId": "O-2",
+    "width": 338,
+    "height": 134,
+    "borderWidth": 1,
+    "borderRadius": 5,
+    "borderColor": {
+      "red": 15,
+      "green": 140,
+      "blue": 121,
+      "alpha": 1
+    },
+    "backgroundColor": {
+      "red": 51,
+      "green": 182,
+      "blue": 208,
+      "alpha": 1
+    },
+    "nodeImage": {
+      "url": "https://raw.githubusercontent.com/bumbeishvili/Assets/master/Projects/D3/Organization%20Chart/general.jpg",
+      "width": 100,
+      "height": 100,
+      "centerTopDistance": 0,
+      "centerLeftDistance": 0,
+      "cornerShape": "CIRCLE",
+      "shadow": false,
+      "borderWidth": 0,
+      "borderColor": {
+        "red": 19,
+        "green": 123,
+        "blue": 128,
+        "alpha": 1
+      }
+    },
+    "nodeIcon": {
+      "icon": "https://to.ly/1yZnX",
+      "size": 30
+    },
+    "template": "<div>\n                  <div style=\"margin-left:70px;\n                              margin-top:10px;\n                              font-size:20px;\n                              font-weight:bold;\n                         \">West Adam </div>\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:16px;\n                         \">CTO </div>\n\n                 <div style=\"margin-left:70px;\n                              margin-top:3px;\n                              font-size:14px;\n                         \">Delivery Department</div>\n\n                 <div style=\"margin-left:194px;\n                             margin-top:15px;\n                             font-size:13px;\n                             position:absolute;\n                             bottom:5px;\n                            \">\n                      <div>CEO office</div>\n                      <div style=\"margin-top:5px\">Corporate</div>\n                 </div>\n              </div>",
+    "connectorLineColor": {
+      "red": 220,
+      "green": 189,
+      "blue": 207,
+      "alpha": 1
+    },
+    "connectorLineWidth": 5,
+    "dashArray": "",
+    "expanded": false,
+    "directSubordinates": 0,
+    "totalSubordinates": 0
+  }
+]

@@ -1,0 +1,222 @@
+{{#>
+layouts/main
+        title="Liste des encaissements"
+}}
+
+    {{#*inline "head-block"}}
+        <link rel="stylesheet" href="css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
+        <style>
+            .dataTable tbody {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .textToLeft {
+                text-align: left;
+            }
+
+            #dt-patients td:last-child {
+                display: flex;
+                justify-content: space-evenly;
+            }
+        </style>
+    {{/inline}}
+
+    {{#*inline "content-block"}}
+        <div class="row">
+            <div class="col-xl-12">
+                <div id="panel-1" class="panel">
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="row mb-3 no-gutters">
+                                <div class="col-md-10 customFilters d-flex align-items-center justify-content-center">
+                                    <div class="col-md-4" style="display: inline-flex;">
+                                        <div class="input-group input-group-multi-transition">
+                                            <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fal fa-search"></i>
+                        </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="search-1" placeholder="Patient">
+                                            <input type="text" class="form-control" id="search-2" placeholder="N° Urgence">
+                                            <input type="text" class="form-control" id="search-3" placeholder="N° Dossier">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-12" id="FiltreDate1" style=" display: inline-flex;">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <input id="_date_debut1" type="text" class="form-control" data-mask="00/00/0000"
+                                                           placeholder=" Du" disabled>
+                                                    <div class="input-group-append">
+                                        <span class="input-group-text fs-xl">
+                                            <i class="fal fa-calendar"></i>
+                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <input id="_date_fin1" type="text" class="form-control" data-mask="00/00/0000"
+                                                           placeholder=" Au" disabled>
+                                                    <div class="input-group-append">
+                                        <span class="input-group-text fs-xl">
+                                            <i class="fal fa-calendar"></i>
+                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 ">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline2Radio" value="false" name="cloture_checkbox" checked="">
+                                            <label class="custom-control-label" for="defaultInline2Radio">Non Clôturé</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline1Radio" name="cloture_checkbox" value="true">
+                                            <label class="custom-control-label" for="defaultInline1Radio">Clôturé</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button id="btn_search" class="btn btn-default btn-sm" type="button">
+                    <span>
+                        <i class="fal fa-search mr-1"></i>
+                        Rechercher
+                    </span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                                    <div class="dt-buttons" style="margin-left: -50px;">
+                                        <button id="add_encaissement" class="btn btn-add btn-success btn-sm mr-1" tabindex="0"
+                                                type="button"><span><i
+                                                class="fal fa-plus mr-1"></i> Nouveau Encaissement</span></button>
+                                        <button id="cloture_session" class="btn btn-warning btn-info btn-sm" tabindex="0"
+                                                type="button"><span><i
+                                                class="fal fa-sack-dollar mr-1"></i> Clôture Session</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <table id="dt-encaissements"
+                                           class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalAjoutEncaissement" tabindex="-1" role="dialog" aria-hidden="true"
+             data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary-50">
+                        <h5 class="modal-title">Nouveau Encaissement</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="{{iconPrefix}} fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <label class="form-label" for="select_urgence">N° Urgence</label>
+                                    <select id="select_urgence" class="form-control select2"></select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">N° Dossier</label>
+                                    <input type="text" class="form-control num_dossier_patient">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="form-label" for="nom_patient">Médecin</label>
+                                    <input type="text" class="form-control nom_medecin_patient">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="form-label" for="nom_patient">N° Chambre</label>
+                                    <input type="text" class="form-control num_chmabre_patient">
+                                </div>
+                                <div class="col-md-4 ">
+                                    <label class="form-label">Mode d'Encaissement</label>
+                                    <div class="col-md-12 mt-2">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline2RadioMode" value="E" name="mode_reglement_checkbox" checked="">
+                                            <label class="custom-control-label" for="defaultInline2RadioMode">Espèce</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline1RadioMode" name="mode_reglement_checkbox" value="C">
+                                            <label class="custom-control-label" for="defaultInline1RadioMode">Chèque</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="numero_cheque">Numéro du Chèque</label>
+                                    <input id="numero_cheque" type="text" class="form-control">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="date_cheque">Date du Chèque</label>
+                                    <input id="date_cheque" type="date" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xl-12">
+                                <table id="dt-list-service"
+                                       class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button id="valider_ajout_encaissement" type="button" class="btn btn-primary valider">Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalClotureSession" tabindex="-1" role="dialog" aria-hidden="true"
+             data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary-50">
+                        <h5 class="modal-title">Clôture Session</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="{{iconPrefix}} fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="form-label" for="nom_patient">N° Dossier</label>
+                                    <select id="select_dossier_cloture" class="form-control select2"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button id="valider_cloture_session" type="button" class="btn btn-primary valider">Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/inline}}
+
+    {{#*inline "scripts-block"}}
+        <script src="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+        <script src="js/content/encaissements/encaissements.js?v={{random}}"></script>
+    {{/inline}}
+
+{{/layouts/main}}

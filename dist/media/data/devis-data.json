@@ -1,0 +1,87 @@
+{
+	"data":[
+	{
+		"DT_RowId":"1",
+		"libelle":"DEVIS POUR CLINISYS",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Abandonné",
+		"adate":"2021-01-07",
+		"type":"Examen",
+		"piste":"gold",
+		"nomPiste":"Sirine ",
+		"PrenomPiste":"dammak",
+		"adresse":"sirinedammak@gmail.com",
+		"DateN":"10/06/2019",
+		"validité":"30",
+		"telephone":"46 666 666",
+		"numFact":"586214",
+		"mntht":"154.000",
+		"mnthn":"100.000",
+		"mntprt":"125.000",
+		"mntfacture":"45.000"
+	},
+	{
+		"DT_RowId":"2",
+		"libelle":"DEVIS 2",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Validé",
+		"adate":"2021-01-07",
+		"type":"ACTE",
+		"piste":"gold",
+		"nomPiste":"gold",
+		"PrenomPiste":"gold",
+		"adresse":"adresse",
+		"DateN":"10/06/2019",
+		"validité":"30",
+		"telephone":"58512542",
+		"numFact":"586214",
+		"mntht":"154.000",
+		"mnthn":"100.000",
+		"mntprt":"125.000",
+		"mntfacture":"45.000"
+
+	},
+	{
+		"DT_RowId":"3",
+		"libelle":"DEVIS 3",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Abandonné",
+		"adate":"2021-01-07",
+		"type":"Examen",
+		"piste":"gold",
+		"nomPiste":"gold",
+		"PrenomPiste":"gold",
+		"adresse":"adresse",
+		"DateN":"10/06/2019",
+		"validité":"30",
+		"telephone":"58512542",
+		"numFact":"586214",
+		"mntht":"154.000",
+		"mnthn":"100.000",
+		"mntprt":"125.000",
+		"mntfacture":"45.000"
+
+	},
+	{
+		"DT_RowId":"4",
+		"libelle":"DEVIS 4",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Validé",
+		"adate":"2021-01-07",
+		"type":"Examen",
+		"piste":"test",
+		"nomPiste":"gold",
+		"PrenomPiste":"gold",
+		"adresse":"adresse",
+		"DateN":"10/06/2019",
+		"validité":"30",
+		"telephone":"58512542",
+		"numFact":"586214",
+		"mntht":"154.000",
+		"mnthn":"100.000",
+		"mntprt":"125.000",
+		"mntfacture":"45.000"
+	}
+
+	]
+}

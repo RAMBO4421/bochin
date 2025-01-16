@@ -1,0 +1,21 @@
+{
+	"data":[
+	{
+		"DT_RowId":"1",
+		"Objet":"Aller au client",
+		"description":"Description du tache Aller au Client attribué à Rawand Baklouti par l'administrateur",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"attr":"SMS"
+
+	},
+	{
+		"DT_RowId":"2",
+		"Objet":"Envoyer un email",
+		"description":"Description du tache Aller au Client attribué à Rawand Baklouti par l'administrateur",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"attr":"SMS"
+	}
+	]
+}

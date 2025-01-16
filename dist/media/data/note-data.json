@@ -1,0 +1,27 @@
+{
+	"data":[
+	{
+		"DT_RowId":"1",
+		"attr":"Admin",
+		"body":"Notification 1 : affaire commerciale contrat pour Clinisys ayant le statut Accepté affaire commerciale contrat pour Clinisys ayant le statut Accepté"
+
+	},
+	{
+		"DT_RowId":"2",
+		"attr":"Rawand",
+		"body":"Notification 2 : affaire commerciale contrat pour Clinisys ayant le statut Accepté affaire commerciale contrat pour Clinisys ayant le statut Accepté"
+	}
+	,
+	{
+		"DT_RowId":"3",
+		"attr":"Admin",
+		"body":"Notification 3 : affaire commerciale contrat pour Clinisys ayant le statut Accepté affaire commerciale contrat pour Clinisys ayant le statut Accepté"
+	}
+	,
+	{
+		"DT_RowId":"4",
+		"attr":"Rawand",
+		"body":"Notification 4 : affaire commerciale contrat pour Clinisys ayant le statut Accepté affaire commerciale contrat pour Clinisys ayant le statut Accepté"
+	}
+	]
+}

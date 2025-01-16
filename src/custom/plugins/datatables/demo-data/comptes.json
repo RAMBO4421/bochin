@@ -1,0 +1,27 @@
+{
+	"data":[
+	{
+		"DT_RowId":"1",
+		"libelle":"centre radiologie jasmin",
+        "type":"services",
+		"siteweb":"centreradiojasmin.com",
+		"tel":"22 258 639",
+		"emp":"radiologue",
+		"act":"aucun",
+		"desc":"",
+		"nom":"neji",
+        "prenom":"drira",
+        "tele":"99 546 231",
+		"add":"route manzel chaker",
+		"fonc":"gérant",
+		"mail":"nejidrira@yahoo.com",
+		"adresse":"route tunis",
+		"rue":"rue 18 janvier",
+		"ville":"sfax",
+        "region":"sfax",
+        "code":"3064",
+		"pays":"Tunisie"
+		
+	}
+]
+}

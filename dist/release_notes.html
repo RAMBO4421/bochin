@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title data-i18n=''>Notes de version - Urgence v0.0.1</title>
+        <meta name="description" content="Notes de version">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+        <!-- Call App Mode on ios devices -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- base css -->
+        <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="css/vendors.bundle.css?v=1737037985100">
+        <link id="appbundle" rel="stylesheet" media="screen, print" href="css/app.bundle.css?v=1737037985100">
+        <link id="mytheme" rel="stylesheet" media="screen, print" href="#">
+        <link id="myskin" rel="stylesheet" media="screen, print" href="css/skins/skin-master.css?v=1737037985100">
+        <link rel="stylesheet" media="screen, print" href="css/notifications/sweetalert2/sweetalert2.bundle.css?v=1737037985100">
+        <link rel="stylesheet" media="screen, print" href="css/notifications/toastr/toastr.css?v=1737037985100">
+        <link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css?v=1737037985100">
+        <link rel="stylesheet" href="css/formplugins/select2/select2.bundle.css?v=1737037985100">
+        <!-- Place favicon.ico in the root directory -->
+        <!--<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">-->
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon.ico">
+        <!--<link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">-->
+    </head>
+    <!-- BEGIN Body -->
+    <body class="mod-bg-1 mod-nav-link header-function-fixed nav-function-fixed nav-function-top ">
+        <!-- DOC: script to save and load page settings -->
+        <script>
+            /**
+             *	This script should be placed right after the body tag for fast execution 
+             *	Note: the script is written in pure javascript and does not depend on thirdparty library
+             **/
+            'use strict';
+
+            var classHolder = document.getElementsByTagName("BODY")[0],
+                /** 
+                 * Load from localstorage
+                 **/
+                themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                {},
+                themeURL = themeSettings.themeURL || '',
+                themeOptions = themeSettings.themeOptions || '';
+            /** 
+             * Load theme options
+             **/
+            if (themeSettings.themeOptions)
+            {
+                classHolder.className = themeSettings.themeOptions;
+                console.log("%c✔ Theme settings loaded", "color: #148f32");
+            }
+            else
+            {
+                console.log("%c✔ Heads up! Theme settings is empty or does not exist, loading default settings...", "color: #ed1c24");
+            }
+            if (themeSettings.themeURL && !document.getElementById('mytheme'))
+            {
+                var cssfile = document.createElement('link');
+                cssfile.id = 'mytheme';
+                cssfile.rel = 'stylesheet';
+                cssfile.href = themeURL;
+                document.getElementsByTagName('head')[0].appendChild(cssfile);
+
+            }
+            else if (themeSettings.themeURL && document.getElementById('mytheme'))
+            {
+                document.getElementById('mytheme').href = themeSettings.themeURL;
+            }
+            /** 
+             * Save to localstorage 
+             **/
+            var saveSettings = function()
+            {
+                themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+                {
+                    return /^(nav|header|footer|mod|display)-/i.test(item);
+                }).join(' ');
+                if (document.getElementById('mytheme'))
+                {
+                    themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+                };
+                localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            }
+            /** 
+             * Reset settings
+             **/
+            var resetSettings = function()
+            {
+                localStorage.setItem("themeSettings", "");
+            }
+
+        </script>
+        <!-- BEGIN Page Wrapper -->
+        <div class="page-wrapper">
+            <!-- BEGIN Page Content -->
+            <!-- the #js-page-content id is needed for some plugins to initialize -->
+            <main id="js-page-content" role="main" class="page-content">
+                <div class="subheader"></div>
+                <div class="card mb-g">
+                    <div class="card-body">
+                        <div class="alert alert-primary">
+                            <div class="d-flex flex-start w-100">
+                                <div class="d-flex align-center mr-2 hidden-sm-down">
+                                    <span class="icon-stack icon-stack-lg">
+                                        <i class="base-7 icon-stack-3x color-primary-400"></i>
+                                        <i class="base-7 icon-stack-2x color-primary-600 opacity-70"></i>
+                                        <i class="fal fa-key icon-stack-1x text-white opacity-90"></i>
+                                    </span>
+                                </div>
+                                <div class="d-flex flex-fill">
+                                    <div class="flex-fill">
+                                        <span class="h5">Vous voulez voir plus de fonctionnalités ?</span>
+                                        <br> Nous ajoutons constamment des fonctionnalités à ce module. Pour transmettre ce que vous souhaitez avoir sur les futures mises à jour, veuillez nous envoyer votre demande ici: <a href="http://www.supportc6.com.tn" target="_blank">http://www.supportc6.com.tn</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-g">
+                            Build v 2.6.0 (Next)
+                            <small>
+                                Fonctionnalités
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Affichage liste des notifications j-1
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Marquer les notifications commme lues
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout civilité dans l'entete
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: compte rendu supplémentaire
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: liste des examens suivis (affichage ,ajout ,suppression)
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface pacs: modalité
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface editions: ajout 6 rapports
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: ajout a partir de compte rendu patient
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: ajout documents types
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: ajout multiple de documents
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: ajout repertoire
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: copie ,déplacement ,suppression fichier et repertoire
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: liste des documents types
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: modification documents types
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: suppression dossier
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: renommer dossier
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: protection dossier
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: export dossier
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: renommer document type
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: protection document type
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: export document type
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: annulation protection document type
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: liste des documents types supprimés
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface paramétrage documents types: suppression des fichiers de la dictée vocale
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.5.2
+                            <small>
+                                Fonctionnalités et Améliorations
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Accès médecin
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: entête paramétrable
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Statistiques utilisation
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.5.1
+                            <small>
+                                Fonctionnalités
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: recherche par nom et prénom paramétrable
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.5.0
+                            <small>
+                                Corrections et Améliorations
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: boutons actions avec gestion d'accès
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface liste des comptes rendus: optimisation et lenteur
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface liste des comptes rendus: partie des filtres fixe
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface liste des comptes rendus: hauteur fixe pour les lignes du tableau
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface liste des comptes rendus: boutons actions à droite
+                            </li>
+                            <li>
+                                <span class="badge badge-danger fw-n mr-5 width-19">BUG</span> Interface tableau de bord: les courbes parfois ne s'affichent pas
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.4.3
+                            <small>
+                                Fonctionnalités
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout de colonne csys viewer
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.4.2
+                            <small>
+                                Fonctionnalités
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface pacs: liste des examens pour le médecin radiologue
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface pacs: ajout filtre par nom, prénom, numéro dossier et identifiant
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.4.1
+                            <small>
+                                Fonctionnalités
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout de colonnes meddream et weasis
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout de meddream et weasis dans le menu contextuel
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.4.0
+                            <small>
+                                Corrections, Fonctionnalités et Améliorations
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface rendez-vous: ajout type normal ou urgent
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout observation
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout type normal ou urgent
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: menu contextuel plus riche
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: notifications pour secrétaire
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: notifications pour médecin
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout filtre médecin radiologue et médecin recommandé
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout filtre urgent
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface rendez-vous: changement des couleurs des rendez-vous
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface rendez-vous: affichage des rendez-vous
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface rendez-vous: filtre centre par click
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface liste des comptes rendus: coloration ligne par statut examen
+                            </li>
+                            <li>
+                                <span class="badge badge-danger fw-n mr-5 width-19">BUG</span> Interface rendez-vous: correction interface ajout
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.3.0
+                            <small>
+                                Fonctionnalités et Améliorations
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: gestion d'accès
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: ajout des indicateurs
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: courbe répartition par médecin
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: courbe avancement des planifications
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: courbe attente d'examen
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: aperçu d'activité des centres dynamique
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: dictée vocale
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface liste des comptes rendus: paramétrage des colonnes
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface tableau de bord: raccourci vers calendrier
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.2.0
+                            <small>
+                                Fonctionnalités et Améliorations
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> ajout traçabilité
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: bouton 'Mes taches' pour filtrer les taches
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: filtre modalité
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: recherche par contenu
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: aperçu d'activité des centres
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: entête paramétrable
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: validation compte rendu
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: dévalidation compte rendu
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: modifier et terminer compte rendu
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: Viewer pour macOS conversion word to html
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout menu contextuel
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: ajout arborescence document type
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface pacs: filtre modalité
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface pacs: coloration examen suivant worklist ou non
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Ajout interface tableau de bord
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: ajout Calendrier planification
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: courbe avancement ajout nombre d'attente
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface tableau de bord: courbe répartition des demandes sur la journée
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Ajout thème clair
+                            </li>
+                            <li>
+                                <span class="badge badge-primary fw-n mr-5 width-19">IMPROVEMENT</span> Interface pacs: ordre décroissant
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.1.0
+                            <small>
+                                Améliorations
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Ajout interface de paramétrage
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: recherche par contenue
+                            </li>
+                        </ul>
+                        <hr class="mt-4 mb-g">
+                        <h4 class="mb-g">
+                            Build v 2.0.0
+                            <small>
+                                Version initiale
+                            </small>
+                        </h4>
+                        <ul class="nav d-block fs-md pl-3">
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: boutons pour les actions
+                            </li>
+                            <li>
+                                <span class="badge badge-success fw-n mr-5 width-19">FEATURE</span> Interface liste des comptes rendus: filtres sur les colonnes du tableau
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal"></div>
+            </main>
+            <!-- END Page Content -->
+        </div>
+        <!-- END Page Wrapper -->
+        <span id="app-name" style="display: none">Urgence</span>
+        <span id="app-version" style="display: none">0.0.1</span>
+    </body>
+    <!-- END Body -->
+</html>

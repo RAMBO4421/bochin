@@ -1,0 +1,102 @@
+<div id="in_call" style="display: none">
+    <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center rounded-top">
+        <h4 class="m-0 text-center color-white">
+            Appel Entrant
+            <small class="mb-0 opacity-80">Terminal 1109</small>
+        </h4>
+    </div>
+    <div class="custom-scroll h-100">
+        <div class="card border shadow-0 shadow-sm-hover">
+            <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
+                <div class="d-flex flex-row align-items-center">
+					<span class="status status-success mr-3">
+						<span class="rounded-circle profile-image d-block "
+                              style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+					</span>
+                    <div class="info-card-text flex-1">
+                        <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info"
+                           data-toggle="dropdown" aria-expanded="false">
+                            <span id="caller_name"></span>
+                        </a>
+                        <span id="caller_number" class="text-truncate text-truncate-xl"></span>
+                    </div>
+                    <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse"
+                            data-target="#c_1 > .card-body + .card-body" aria-expanded="false">
+                        <span class="collapsed-hidden">+</span>
+                        <span class="collapsed-reveal">-</span>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="p-3">
+                    <a href="tel:+13174562564" class="mt-1 d-block fs-sm fw-400 text-dark">
+                        <i class="{{iconPrefix}} fa-mobile-alt text-muted mr-2"></i> +1 317-456-2564</a>
+                    <a href="mailto:oliver.kopyov@smartadminwebapp.com" class="mt-1 d-block fs-sm fw-400 text-dark">
+                        <i class="{{iconPrefix}} fa-mouse-pointer text-muted mr-2"></i> oliver.kopyov@smartadminwebapp.com</a>
+                    <address class="fs-sm fw-400 mt-4 text-muted">
+                        <i class="{{iconPrefix}} fa-map-pin mr-2"></i> 15 Charist St, Detroit, MI, 48212, USA
+                    </address>
+                </div>
+                <hr class="mb-0 mt-4">
+                <div class="pl-5 pr-3 py-3 bg-faded">
+                    <div class="row no-gutters">
+                        <div class="col-6">
+                            <a href="#" class="btn btn-success fw-500 btn-block waves-effect waves-themed m-3"
+                               data-action="app-reset">
+                                Répondre
+                                <i class="{{iconPrefix}} fa-phone"></i>
+                            </a>
+                        </div>
+                        <div class="col-6 pl-1">
+                            <a href="#" class="btn btn-danger fw-500 btn-block waves-effect waves-themed m-3"
+                               data-action="factory-reset">
+                                Décliner
+                                <i class="{{iconPrefix}} fa-phone-slash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="out_call" style="display: none">
+    <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center rounded-top">
+        <h4 class="m-0 text-center color-white">
+            Appel Sortant
+            <small class="mb-0 opacity-80">Terminal 1109</small>
+        </h4>
+    </div>
+    <div class="custom-scroll h-100">
+        <div class="card border shadow-0 shadow-sm-hover">
+            <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
+                <div class="d-flex flex-row align-items-center">
+                    <input id="voip_number" type="tel" class="form-control form-control-lg">
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4" style=" display: flex; flex-direction: column; ">
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="7">7</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="4">4</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="1">1</button>
+                        <button type="button" class="btn btn-lg btn-success waves-effect waves-themed m-2"><i class="{{iconPrefix}} fa-phone"></i></button>
+                    </div>
+                    <div class="col-md-4" style=" display: flex; flex-direction: column; ">
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="8">8</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="5">5</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="2">2</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-auto voip_numpad" value="0" style="display: flex;">0</button>
+                    </div>
+                    <div class="col-md-4" style=" display: flex; flex-direction: column; ">
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="9">9</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="6">6</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad" value="3">3</button>
+                        <button type="button" class="btn btn-lg btn-outline-primary waves-effect waves-themed m-2 voip_numpad_backspace"><i class="{{iconPrefix}} fa-backspace"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

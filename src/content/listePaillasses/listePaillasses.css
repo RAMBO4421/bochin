@@ -1,0 +1,62 @@
+.zoneRaffesh {
+    width: 40px;
+    padding: 5px;
+    padding-bottom: 7px;
+    margin-right: 4px;
+    cursor: pointer;
+    background-color: transparent;
+    border-width: 0px;
+    cursor: pointer;
+    height: 33px;
+  }
+  
+  .zoneRaffesh:not(.disabled):hover {
+    border: 1px solid #666;
+    border-width: 0px;
+    background-color: #e0e0e0;
+    color: white;
+    background-image: linear-gradient(to bottom, #f9f9f9 0%, #e0e0e0 100%);
+    /*linear-gradient(to bottom, #1294b87a 0%, #1294b8bb 100%);#1293b8*/
+  }
+  .dataTables_scrollBody{
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

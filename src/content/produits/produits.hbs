@@ -1,0 +1,399 @@
+{{#>
+layouts/main
+        title="Liste des patients"
+}}
+
+    {{#*inline "head-block"}}
+        <link rel="stylesheet" href="css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
+        <style>
+            .dataTable tbody {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .textToLeft {
+                text-align: left;
+            }
+
+            #dt-produits td:last-child {
+                display: flex;
+                justify-content: space-evenly;
+            }
+        </style>
+    {{/inline}}
+
+    {{#*inline "content-block"}}
+        <div class="row">
+             
+            <div class="col-xl-12">
+                <div id="panel-1" class="panel">
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="row mb-3 no-gutters">
+                                <div class="col-md-10 customFilters d-flex align-items-center justify-content-center">
+                                    <div class="col-md-4" style="display: inline-flex;">
+                                        <div class="input-group input-group-multi-transition">
+                                            <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fal fa-search"></i>
+                        </span>
+                                            </div>
+                                            <input type="text" class="form-control" id="search-1" placeholder="Produit">
+                                             
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-12" id="FiltreDate1" style=" display: inline-flex;">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <input id="_date_debut1" type="text" class="form-control" data-mask="00/00/0000"
+                                                           placeholder=" Du" disabled>
+                                                    <div class="input-group-append">
+                                        <span class="input-group-text fs-xl">
+                                            <i class="fal fa-calendar"></i>
+                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <input id="_date_fin1" type="text" class="form-control" data-mask="00/00/0000"
+                                                           placeholder=" Au" disabled>
+                                                    <div class="input-group-append">
+                                        <span class="input-group-text fs-xl">
+                                            <i class="fal fa-calendar"></i>
+                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-2">
+                                        <button id="btn_search" class="btn btn-default btn-sm" type="button">
+                    <span>
+                        <i class="fal fa-search mr-1"></i>
+                        Rechercher
+                    </span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                                    <div class="dt-buttons">
+                                        <button id="add_produit" class="btn btn-add btn-success btn-sm mr-1" tabindex="0"
+                                                aria-controls="dt-patients" type="button"><span><i
+                                                class="fal fa-plus mr-1"></i> Nouvelle Produit</span></button>
+                                        <button id="refresh_admission" class="btn btn-refresh btn-info btn-sm" tabindex="0"
+                                                aria-controls="dt-patients" type="button"><span><i
+                                                class="fal fa-sync mr-1"></i> Actualiser</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <table id="dt-produits"
+                                           class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalAjoutProduits" tabindex="-1" role="dialog" aria-hidden="true"
+             data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary-50">
+                        <h5 class="modal-title">Ajout nouvelle produite</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="{{iconPrefix}} fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="nom_patient">Nom du Produit</label>
+                                    <input type="text" id="code" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="designation">Désignation</label>
+                                    <input type="number" id="designation" class="form-control">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="siteProd">Site du produit</label>
+                                    <input type="number" id="siteProd" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    
+                         
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button id="valider_nouvelle_admission" type="button" class="btn btn-primary valider">Valider
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="modal fade" id="modalAffectationPatients" tabindex="-1" role="dialog" aria-hidden="true"
+             data-backdrop="static"
+             data-keyboard="false">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary-50">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="{{iconPrefix}} fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="nom_patient">Nom du Patient</label>
+                                    <input type="text" class="form-control nom_patient">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">N° Urgence</label>
+                                    <input type="text" class="form-control num_urgence_patient">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">N° Dossier</label>
+                                    <input type="text" class="form-control num_dossier_patient">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="form-label" for="nom_patient">Médecin</label>
+                                    <input type="text" class="form-control nom_medecin_patient">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="form-label" for="nom_patient">N° Chambre</label>
+                                    <input type="text" class="form-control num_chmabre_patient">
+                                </div>
+                                <div class="col-sm-5" style="text-align: right">
+                                    <label class="form-label">&nbsp;</label>
+                                    <div>
+                                        <button id="ajouter_service" type="button" class="btn btn-success" style="display:none;">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-container show">
+                            <div class="panel-content">
+<!--                                <div style="display: flex; justify-content: space-between;">-->
+<!--                                    <ul class="nav nav-tabs listAdd disappear mariginTop2" role="tablist">-->
+<!--                                        <li class="nav-item">-->
+<!--                                            <a class="nav-link" data-toggle="tab" href="#tab_default-1" role="tab">Pharmacie</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="nav-item">-->
+<!--                                            <a class="nav-link" data-toggle="tab" href="#tab_default-2" role="tab">Honoraires</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="nav-item">-->
+<!--                                            <a class="nav-link" data-toggle="tab" href="#tab_default-3" role="tab">Réserve</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="nav-item">-->
+<!--                                            <a class="nav-link" data-toggle="tab" href="#tab_default-4" role="tab">Prestations</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="nav-item">-->
+<!--                                            <a class="nav-link" data-toggle="tab" href="#tab_default-5" role="tab">Extras</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="nav-item">-->
+<!--                                            <a class="nav-link" data-toggle="tab" href="#tab_default-6"-->
+<!--                                               role="tab">Soins</a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                    <ul class="nav nav-tabs disappear mariginTop2">-->
+<!--                                        <li>-->
+<!--                                            <button id="ajouter_service" type="button" class="btn btn-success" style="display:none;">Ajouter-->
+<!--                                            </button>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+                                <div class="tab-content" style="padding-top: 1rem;">
+                                    <div class="tab-pane fade" id="tab_default-1" role="tabpanel" index="1">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="dt-list-affectation-1"
+                                                       class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="tab_default-2" role="tabpanel" index="2">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="dt-list-affectation-2"
+                                                       class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="tab_default-3" role="tabpanel" index="3">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="dt-list-affectation-3"
+                                                       class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="tab_default-4" role="tabpanel" index="4">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="dt-list-affectation-4"
+                                                       class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="tab_default-5" role="tabpanel" index="5">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="dt-list-affectation-5"
+                                                       class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="tab_default-6" role="tabpanel" index="6">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <table id="dt-list-affectation-6"
+                                                       class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button id="valider_affectation" type="button" class="btn btn-primary valider"
+                                    style="display: none">Valider
+                            </button>
+                            <button id="supprimer_affectation" type="button" class="btn btn-danger delete"
+                                    data-dismiss="modal" style="display: none">Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalAjoutService" tabindex="-1" role="dialog" aria-hidden="true"
+             data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary-50">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="{{iconPrefix}} fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="nom_patient">Nom du Patient</label>
+                                    <input type="text" class="form-control nom_patient">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">N° Urgence</label>
+                                    <input type="text" class="form-control num_urgence_patient">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">N° Dossier</label>
+                                    <input type="text" class="form-control num_dossier_patient">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="form-label" for="nom_patient">Médecin</label>
+                                    <input type="text" class="form-control nom_medecin_patient">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="form-label" for="nom_patient">N° Chambre</label>
+                                    <input type="text" class="form-control num_chmabre_patient">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <label class="form-label" for="medecin_patient">Référence</label>
+                                    <select id="select_reference" class="form-control select2"></select>
+                                </div>
+                                <div class="col-sm-3" style="display: none">
+                                    <label class="form-label" for="nom_patient">Quantité</label>
+                                    <input type="number" id="qte_reference" class="form-control">
+                                </div>
+                                <div class="col-sm-3" style="display: none">
+                                    <label class="form-label" for="montant_honoraire_reference">Montant</label>
+                                    <input type="text" id="montant_honoraire_reference" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">Prix Unitaire HT</label>
+                                    <input type="number" id="prixHT_reference" step="0.001" class="form-control" disabled>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">Taux TVA</label>
+                                    <input type="number" id="tauxTVA_reference" step="0.001" class="form-control" disabled>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">Montant TVA</label>
+                                    <input type="number" id="mnt_reference" step="0.001" class="form-control" disabled>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">Prix Unitaire TTC</label>
+                                    <input type="number" id="mntTTC_reference" step="0.001" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">Prix Unitaire</label>
+                                    <input type="number" id="prixUnit_pharmacie_reference" step="0.001" class="form-control" disabled>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="form-label" for="nom_patient">Quantité Disponible</label>
+                                    <input type="number" id="qte_pharmacie_reference" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button id="valider_ajout_service" type="button" class="btn btn-primary valider">Valider</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    {{/inline}}
+
+    {{#*inline "scripts-block"}}
+        <script src="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+        <script src="js/content/produits/produits.js?v={{random}}"></script>
+    {{/inline}}
+
+{{/layouts/main}}

@@ -1,0 +1,28 @@
+.modal-body .tab-content {
+  max-height: calc(100vh - 460px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal-body {
+  padding-bottom: 0;
+}
+
+#release_notes {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  text-decoration: none !important;
+}
+
+table.dataTable.table-sm > thead > tr > th:not(.sorting_disabled) {
+  text-align: center;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}

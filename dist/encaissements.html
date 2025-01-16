@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title data-i18n=''>Liste des encaissements - Urgence v0.0.1</title>
+        <meta name="description" content="Liste des encaissements">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+        <!-- Call App Mode on ios devices -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- base css -->
+        <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="css/vendors.bundle.css?v=1737037985100">
+        <link id="appbundle" rel="stylesheet" media="screen, print" href="css/app.bundle.css?v=1737037985100">
+        <link id="mytheme" rel="stylesheet" media="screen, print" href="#">
+        <link id="myskin" rel="stylesheet" media="screen, print" href="css/skins/skin-master.css?v=1737037985100">
+        <link rel="stylesheet" media="screen, print" href="css/notifications/sweetalert2/sweetalert2.bundle.css?v=1737037985100">
+        <link rel="stylesheet" media="screen, print" href="css/notifications/toastr/toastr.css?v=1737037985100">
+        <link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css?v=1737037985100">
+        <link rel="stylesheet" href="css/formplugins/select2/select2.bundle.css?v=1737037985100">
+        <!-- Place favicon.ico in the root directory -->
+        <!--<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">-->
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon.ico">
+        <!--<link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">-->
+        <link rel="stylesheet" href="css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
+        <style>
+            .dataTable tbody {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .textToLeft {
+                text-align: left;
+            }
+
+            #dt-patients td:last-child {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+        </style>
+    </head>
+    <!-- BEGIN Body -->
+    <body class="mod-bg-1 mod-nav-link nav-function-hidden nav-function-top header-function-fixed ">
+        <!-- DOC: script to save and load page settings -->
+        <script>
+            /**
+             *	This script should be placed right after the body tag for fast execution 
+             *	Note: the script is written in pure javascript and does not depend on thirdparty library
+             **/
+            'use strict';
+
+            var classHolder = document.getElementsByTagName("BODY")[0],
+                /** 
+                 * Load from localstorage
+                 **/
+                themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                {},
+                themeURL = themeSettings.themeURL || '',
+                themeOptions = themeSettings.themeOptions || '';
+            /** 
+             * Load theme options
+             **/
+            if (themeSettings.themeOptions)
+            {
+                classHolder.className = themeSettings.themeOptions;
+                console.log("%c✔ Theme settings loaded", "color: #148f32");
+            }
+            else
+            {
+                console.log("%c✔ Heads up! Theme settings is empty or does not exist, loading default settings...", "color: #ed1c24");
+            }
+            if (themeSettings.themeURL && !document.getElementById('mytheme'))
+            {
+                var cssfile = document.createElement('link');
+                cssfile.id = 'mytheme';
+                cssfile.rel = 'stylesheet';
+                cssfile.href = themeURL;
+                document.getElementsByTagName('head')[0].appendChild(cssfile);
+
+            }
+            else if (themeSettings.themeURL && document.getElementById('mytheme'))
+            {
+                document.getElementById('mytheme').href = themeSettings.themeURL;
+            }
+            /** 
+             * Save to localstorage 
+             **/
+            var saveSettings = function()
+            {
+                themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+                {
+                    return /^(nav|header|footer|mod|display)-/i.test(item);
+                }).join(' ');
+                if (document.getElementById('mytheme'))
+                {
+                    themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+                };
+                localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+            }
+            /** 
+             * Reset settings
+             **/
+            var resetSettings = function()
+            {
+                localStorage.setItem("themeSettings", "");
+            }
+
+        </script>
+        <div id="example-modal-alert" tabindex="-1" role="dialog" style="display: none;z-index:99999999999999999999999;overflow: hidden; position: fixed; width: 100%; border: 0;background-color: #000;
+    opacity: 0.2;height: 100%">
+            <div class="modal-body">
+                <div class="d-flex justify-content-center" style="padding-top: 15%">
+                    <<div class="demo">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-border text-secondary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-border text-danger" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-border text-info" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-border text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-border text-dark" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- BEGIN Page Wrapper -->
+        <div class="page-wrapper">
+            <div class="page-inner">
+                <!-- BEGIN Left Aside -->
+                <aside class="page-sidebar">
+                    <div class="page-logo">
+                        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
+                            <img src="img/logo.png" alt="Urgence" aria-roledescription="logo">
+                            <span class="page-logo-text mr-1">Urgence</span>
+                            <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
+                        </a>
+                    </div>
+                    <!-- BEGIN PRIMARY NAVIGATION -->
+                    <nav id="js-primary-nav" class="primary-nav" role="navigation">
+                        <!--<div class="nav-filter">
+					<div class="position-relative">
+						<input type="text" id="nav_filter_input" placeholder="Filter menu" class="form-control" tabindex="0">
+						<a href="#" onclick="return false;" class="btn-primary btn-search-close js-waves-off" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar">
+							<i class="fal fa-chevron-up"></i>
+						</a>
+					</div>
+				</div> -->
+                        <!--<div class="info-card">
+					<img src="img/demo/avatars/avatar-m.png" class="profile-image rounded-circle" alt="">
+					<div class="info-card-text">
+						<a href="#" class="d-flex align-items-center text-white">
+							<span class="text-truncate text-truncate-sm d-inline-block">
+								
+							</span>
+						</a>
+						<span class="d-inline-block text-truncate text-truncate-sm">Toronto, Canada</span>
+					</div>
+					<img src="img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
+					<a href="#" onclick="return false;" class="pull-trigger-btn" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar" data-focus="nav_filter_input">
+						<i class="fal fa-angle-down"></i>
+					</a>
+				</div>-->
+                        <ul id="js-nav-menu" class="nav-menu">
+                            <li class="" href=patients.html?v=1737037980147>
+                                <a href="patients.html?v=1737037980147" title="Liste des patients" data-filter-tags="liste des patients">
+                                    <i class="fal fa-users"></i>
+                                    <span class="nav-link-text" data-i18n="nav.liste_des_patients">Liste des patients</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" title="Facturation" data-filter-tags="facturation">
+                                    <i class="fal fa-file-invoice-dollar"></i>
+                                    <span class="nav-link-text" data-i18n="nav.facturation">Facturation</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a path=javascript:void(0);?v=1737037980147 href="javascript:void(0);?v=1737037980147" title="Soins" data-filter-tags="facturation soins">
+                                            <span class="nav-link-text" data-i18n="nav.facturation_soins">Soins</span>
+                                            <span class="menu_soins"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a path=javascript:void(0);?v=1737037980147 href="javascript:void(0);?v=1737037980147" title="Honoraires" data-filter-tags="facturation honoraires">
+                                            <span class="nav-link-text" data-i18n="nav.facturation_honoraires">Honoraires</span>
+                                            <span class="menu_honoraires"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a path=javascript:void(0);?v=1737037980147 href="javascript:void(0);?v=1737037980147" title="Pharmacie" data-filter-tags="facturation pharmacie">
+                                            <span class="nav-link-text" data-i18n="nav.facturation_pharmacie">Pharmacie</span>
+                                            <span class="menu_pharmacie"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="" href=encaissements.html?v=1737037980147>
+                                <a href="encaissements.html?v=1737037980147" title="Liste des encaissements" data-filter-tags="liste des encaissements">
+                                    <i class="fal fa-cash-register"></i>
+                                    <span class="nav-link-text" data-i18n="nav.liste_des_encaissements">Liste des encaissements</span>
+                                </a>
+                            </li>
+                            <li class="" href=produits.html?v=1737037980147>
+                                <a href="produits.html?v=1737037980147" title="Liste des produits" data-filter-tags="liste des produits">
+                                    <i class="fal fa-users"></i>
+                                    <span class="nav-link-text" data-i18n="nav.liste_des_produits">Liste des produits</span>
+                                </a>
+                            </li>
+                            <li class="" href=listePaillasses.html?v=1737037980147>
+                                <a href="listePaillasses.html?v=1737037980147" title="Liste des Paillasses" data-filter-tags="liste des paillasses">
+                                    <i class="undefined"></i>
+                                    <span class="nav-link-text" data-i18n="nav.liste_des_paillasses">Liste des Paillasses</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!--<div class="filter-message js-filter-message bg-success-600"></div>-->
+                    </nav>
+                    <!-- END PRIMARY NAVIGATION -->
+                    <!-- NAV FOOTER -->
+                    <!--<div class="nav-footer shadow-top">
+					<a href="#" onclick="return false;" data-action="toggle" data-class="nav-function-minify" class="hidden-md-down">
+						<i class="ni ni-chevron-right"></i>
+						<i class="ni ni-chevron-right"></i>
+					</a>
+					<ul class="list-table m-auto nav-footer-buttons">
+						<li>
+							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Chat logs">
+								<i class="fal fa-comments"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Support Chat">
+								<i class="fal fa-life-ring"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Make a call">
+								<i class="fal fa-phone"></i>
+							</a>
+						</li>
+					</ul>
+				</div>-->
+                    <!-- END NAV FOOTER -->
+                </aside>
+                <!-- END Left Aside -->
+                <div class="page-content-wrapper">
+                    <!-- BEGIN Page Header -->
+                    <header class="page-header" role="banner">
+                        <!-- we need this logo when user switches to nav-function-top -->
+                        <div class="page-logo">
+                            <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
+                                <img src="img/logo.png" alt="Urgence" aria-roledescription="logo">
+                                <span class="page-logo-text mr-1">Urgence</span>
+                                <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
+                            </a>
+                        </div>
+                        <!-- DOC: mobile button appears during mobile width -->
+                        <div class="hidden-lg-up">
+                            <a href="#" class="header-btn btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
+                                <i class="ni ni-menu"></i>
+                            </a>
+                        </div>
+                        <div class="ml-auto d-flex">
+                            <h2 id="clock" class="mb-0 flex-1 text-white fw-300"></h2>
+                        </div>
+                        <div class="ml-auto d-flex">
+                            <!-- activate app search icon (mobile) -->
+                            <div class="hidden-sm-up">
+                                <a href="#" class="header-icon" data-action="toggle" data-class="mobile-search-on" data-focus="search-field" title="Search">
+                                    <i class="fal fa-search"></i>
+                                </a>
+                            </div>
+                            <!-- app settings -->
+                            <div class="hidden-md-down">
+                                <a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-settings">
+                                    <i class="fal fa-cog"></i>
+                                </a>
+                            </div>
+                            <!-- app user menu -->
+                            <div>
+                                <a href="#" data-toggle="dropdown" title="" class="header-icon d-flex align-items-center justify-content-center ml-2">
+                                    <img src="img/demo/avatars/avatar-m.png" class="profile-image rounded-circle" alt="">
+                                    <!-- you can also add username next to the avatar with the codes below:
+									<span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
+									<i class="ni ni-chevron-down hidden-xs-down"></i> -->
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+                                    <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
+                                        <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                                            <span class="mr-2">
+                                                <img src="img/demo/avatars/avatar-m.png" class="rounded-circle profile-image" alt="">
+                                            </span>
+                                            <div class="info-card-text">
+                                                <div id="username" class="fs-lg text-truncate text-truncate-lg"></div>
+                                                <span id="email" class="text-truncate text-truncate-md opacity-80"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <a href="#" class="dropdown-item" data-action="app-reset">
+                                        <span data-i18n="drpdwn.reset_layout">Reset Layout</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target=".js-modal-settings">
+                                        <span data-i18n="drpdwn.settings">Settings</span>
+                                    </a>
+                                    <a href="release_notes.html" id="release_notes" class="dropdown-item" target="_blank">
+                                        <span data-i18n="drpdwn.release_notes">Release Notes</span>
+                                        <span>Build v 0.0.1</span>
+                                    </a>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <a href="#" class="dropdown-item" data-action="app-fullscreen">
+                                        <span data-i18n="drpdwn.fullscreen">Fullscreen</span>
+                                        <i class="float-right text-muted fw-n">F11</i>
+                                    </a>
+                                    <a href="#" class="dropdown-item" data-action="app-print">
+                                        <span data-i18n="drpdwn.print">Print</span>
+                                        <i class="float-right text-muted fw-n">Ctrl + P</i>
+                                    </a>
+                                    <div class="dropdown-multilevel dropdown-multilevel-left">
+                                        <div class="dropdown-item">
+                                            Language
+                                        </div>
+                                        <div class="dropdown-menu">
+                                            <a id="lang_fr" href="#?lang=fr" class="dropdown-item" data-action="lang" data-lang="fr">Français</a>
+                                            <a id="lang_en" href="#?lang=en" class="dropdown-item" data-action="lang" data-lang="en">English (US)</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <a class="dropdown-item fw-500 pt-3 pb-3" href="page_login.html">
+                                        <span data-i18n="drpdwn.page-logout">Logout</span>
+                                        <span class="float-right fw-n">&commat;</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <!-- END Page Header -->
+                    <!-- BEGIN Page Content -->
+                    <!-- the #js-page-content id is needed for some plugins to initialize -->
+                    <main id="js-page-content" role="main" class="page-content">
+                        <div class="subheader"></div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div id="panel-1" class="panel">
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <div class="row mb-3 no-gutters">
+                                                <div class="col-md-10 customFilters d-flex align-items-center justify-content-center">
+                                                    <div class="col-md-4" style="display: inline-flex;">
+                                                        <div class="input-group input-group-multi-transition">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">
+                                                                    <i class="fal fa-search"></i>
+                                                                </span>
+                                                            </div>
+                                                            <input type="text" class="form-control" id="search-1" placeholder="Patient">
+                                                            <input type="text" class="form-control" id="search-2" placeholder="N° Urgence">
+                                                            <input type="text" class="form-control" id="search-3" placeholder="N° Dossier">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-12" id="FiltreDate1" style=" display: inline-flex;">
+                                                            <div class="col-md-6">
+                                                                <div class="input-group">
+                                                                    <input id="_date_debut1" type="text" class="form-control" data-mask="00/00/0000" placeholder=" Du" disabled>
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text fs-xl">
+                                                                            <i class="fal fa-calendar"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="input-group">
+                                                                    <input id="_date_fin1" type="text" class="form-control" data-mask="00/00/0000" placeholder=" Au" disabled>
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text fs-xl">
+                                                                            <i class="fal fa-calendar"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 ">
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline2Radio" value="false" name="cloture_checkbox" checked="">
+                                                            <label class="custom-control-label" for="defaultInline2Radio">Non Clôturé</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline1Radio" name="cloture_checkbox" value="true">
+                                                            <label class="custom-control-label" for="defaultInline1Radio">Clôturé</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button id="btn_search" class="btn btn-default btn-sm" type="button">
+                                                            <span>
+                                                                <i class="fal fa-search mr-1"></i>
+                                                                Rechercher
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                                                    <div class="dt-buttons" style="margin-left: -50px;">
+                                                        <button id="add_encaissement" class="btn btn-add btn-success btn-sm mr-1" tabindex="0" type="button"><span><i class="fal fa-plus mr-1"></i> Nouveau Encaissement</span></button>
+                                                        <button id="cloture_session" class="btn btn-warning btn-info btn-sm" tabindex="0" type="button"><span><i class="fal fa-sack-dollar mr-1"></i> Clôture Session</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <table id="dt-encaissements" class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modalAjoutEncaissement" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary-50">
+                                        <h5 class="modal-title">Nouveau Encaissement</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <label class="form-label" for="select_urgence">N° Urgence</label>
+                                                    <select id="select_urgence" class="form-control select2"></select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="form-label" for="nom_patient">N° Dossier</label>
+                                                    <input type="text" class="form-control num_dossier_patient">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label class="form-label" for="nom_patient">Médecin</label>
+                                                    <input type="text" class="form-control nom_medecin_patient">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="form-label" for="nom_patient">N° Chambre</label>
+                                                    <input type="text" class="form-control num_chmabre_patient">
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <label class="form-label">Mode d'Encaissement</label>
+                                                    <div class="col-md-12 mt-2">
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline2RadioMode" value="E" name="mode_reglement_checkbox" checked="">
+                                                            <label class="custom-control-label" for="defaultInline2RadioMode">Espèce</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline1RadioMode" name="mode_reglement_checkbox" value="C">
+                                                            <label class="custom-control-label" for="defaultInline1RadioMode">Chèque</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display: none">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label class="form-label" for="numero_cheque">Numéro du Chèque</label>
+                                                    <input id="numero_cheque" type="text" class="form-control">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="form-label" for="date_cheque">Date du Chèque</label>
+                                                    <input id="date_cheque" type="date" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xl-12">
+                                                <table id="dt-list-service" class="table table-bordered table-hover table-striped w-100 table-sm"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        <button id="valider_ajout_encaissement" type="button" class="btn btn-primary valider">Valider</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modalClotureSession" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary-50">
+                                        <h5 class="modal-title">Clôture Session</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="form-label" for="nom_patient">N° Dossier</label>
+                                                    <select id="select_dossier_cloture" class="form-control select2"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        <button id="valider_cloture_session" type="button" class="btn btn-primary valider">Valider</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <!-- this overlay is activated only when mobile menu is triggered -->
+                    <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                    <!-- BEGIN Page Footer -->
+                    <footer class="page-footer" role="contentinfo">
+                        <div class="d-flex align-items-center flex-1 text-muted">
+                            <span class="hidden-md-down fw-700">© 2021 CliniSys by&nbsp;<a href='http://clinisys-his.com' class='text-primary fw-500' title='clinisys-his.com' target='_blank'>clinisys-his.com</a></span>
+                        </div>
+                        <div>
+                            <ul class="list-table m-0">
+                                <li><a href="tableau_de_bord.html" class="text-secondary fw-700">About</a></li>
+                                <li class="pl-3"><a href="info_app_licensing.html" class="text-secondary fw-700">License</a></li>
+                                <li class="pl-3"><a href="info_app_docs.html" class="text-secondary fw-700">Documentation</a></li>
+                                <li class="pl-3 fs-xl"><a href="https://wrapbootstrap.com/user/MyOrange" class="text-secondary" target="_blank"><i class="fal fa-question-circle" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </footer>
+                    <!-- END Page Footer -->
+                    <!-- BEGIN Color profile -->
+                    <!-- this area is hidden and will not be seen on screens or screen readers -->
+                    <!-- we use this only for CSS color refernce for JS stuff -->
+                    <p id="js-color-profile" class="d-none">
+                        <span class="color-primary-50"></span>
+                        <span class="color-primary-100"></span>
+                        <span class="color-primary-200"></span>
+                        <span class="color-primary-300"></span>
+                        <span class="color-primary-400"></span>
+                        <span class="color-primary-500"></span>
+                        <span class="color-primary-600"></span>
+                        <span class="color-primary-700"></span>
+                        <span class="color-primary-800"></span>
+                        <span class="color-primary-900"></span>
+                        <span class="color-info-50"></span>
+                        <span class="color-info-100"></span>
+                        <span class="color-info-200"></span>
+                        <span class="color-info-300"></span>
+                        <span class="color-info-400"></span>
+                        <span class="color-info-500"></span>
+                        <span class="color-info-600"></span>
+                        <span class="color-info-700"></span>
+                        <span class="color-info-800"></span>
+                        <span class="color-info-900"></span>
+                        <span class="color-danger-50"></span>
+                        <span class="color-danger-100"></span>
+                        <span class="color-danger-200"></span>
+                        <span class="color-danger-300"></span>
+                        <span class="color-danger-400"></span>
+                        <span class="color-danger-500"></span>
+                        <span class="color-danger-600"></span>
+                        <span class="color-danger-700"></span>
+                        <span class="color-danger-800"></span>
+                        <span class="color-danger-900"></span>
+                        <span class="color-warning-50"></span>
+                        <span class="color-warning-100"></span>
+                        <span class="color-warning-200"></span>
+                        <span class="color-warning-300"></span>
+                        <span class="color-warning-400"></span>
+                        <span class="color-warning-500"></span>
+                        <span class="color-warning-600"></span>
+                        <span class="color-warning-700"></span>
+                        <span class="color-warning-800"></span>
+                        <span class="color-warning-900"></span>
+                        <span class="color-success-50"></span>
+                        <span class="color-success-100"></span>
+                        <span class="color-success-200"></span>
+                        <span class="color-success-300"></span>
+                        <span class="color-success-400"></span>
+                        <span class="color-success-500"></span>
+                        <span class="color-success-600"></span>
+                        <span class="color-success-700"></span>
+                        <span class="color-success-800"></span>
+                        <span class="color-success-900"></span>
+                        <span class="color-fusion-50"></span>
+                        <span class="color-fusion-100"></span>
+                        <span class="color-fusion-200"></span>
+                        <span class="color-fusion-300"></span>
+                        <span class="color-fusion-400"></span>
+                        <span class="color-fusion-500"></span>
+                        <span class="color-fusion-600"></span>
+                        <span class="color-fusion-700"></span>
+                        <span class="color-fusion-800"></span>
+                        <span class="color-fusion-900"></span>
+                    </p>
+                    <!-- END Color profile -->
+                </div>
+            </div>
+        </div>
+        <!-- END Page Wrapper -->
+        <!-- BEGIN Page Settings -->
+        <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-right modal-md">
+                <div class="modal-content">
+                    <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+                        <h4 class="m-0 text-center color-white">
+                            Layout Settings
+                            <small class="mb-0 opacity-80">User Interface Settings</small>
+                        </h4>
+                        <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="settings-panel">
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        App Layout
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="fh">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="header-function-fixed"></a>
+                                <span class="onoffswitch-title">Fixed Header</span>
+                                <span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+                            </div>
+                            <div class="list" id="nff">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-fixed"></a>
+                                <span class="onoffswitch-title">Fixed Navigation</span>
+                                <span class="onoffswitch-title-desc">left panel is fixed</span>
+                            </div>
+                            <div class="list" id="nfm">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-minify"></a>
+                                <span class="onoffswitch-title">Minify Navigation</span>
+                                <span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+                            </div>
+                            <div class="list" id="nfh">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-hidden"></a>
+                                <span class="onoffswitch-title">Hide Navigation</span>
+                                <span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+                            </div>
+                            <div class="list" id="nft">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-function-top"></a>
+                                <span class="onoffswitch-title">Top Navigation</span>
+                                <span class="onoffswitch-title-desc">Relocate left pane to top</span>
+                            </div>
+                            <div class="list" id="fff">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="footer-function-fixed"></a>
+                                <span class="onoffswitch-title">Fixed Footer</span>
+                                <span class="onoffswitch-title-desc">page footer is fixed</span>
+                            </div>
+                            <div class="list" id="mmb">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-main-boxed"></a>
+                                <span class="onoffswitch-title">Boxed Layout</span>
+                                <span class="onoffswitch-title-desc">Encapsulates to a container</span>
+                            </div>
+                            <div class="expanded">
+                                <ul class="mb-3 mt-1">
+                                    <li>
+                                        <div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-white border" data-action="toggle" data-class="mod-bg-none"></div>
+                                    </li>
+                                </ul>
+                                <div class="list" id="mbgf">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-fixed-bg"></a>
+                                    <span class="onoffswitch-title">Fixed Background</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Mobile Menu
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="nmp">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-push"></a>
+                                <span class="onoffswitch-title">Push Content</span>
+                                <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                            </div>
+                            <div class="list" id="nmno">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-no-overlay"></a>
+                                <span class="onoffswitch-title">No Overlay</span>
+                                <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                            </div>
+                            <div class="list" id="sldo">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="nav-mobile-slide-out"></a>
+                                <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                                <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                            </div>
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Accessibility
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="mbf">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-bigger-font"></a>
+                                <span class="onoffswitch-title">Bigger Content Font</span>
+                                <span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+                            </div>
+                            <div class="list" id="mhc">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-high-contrast"></a>
+                                <span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+                                <span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+                            </div>
+                            <div class="list" id="mcb">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-color-blind"></a>
+                                <span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+                                <span class="onoffswitch-title-desc">color vision deficiency</span>
+                            </div>
+                            <div class="list" id="mpc">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-pace-custom"></a>
+                                <span class="onoffswitch-title">Preloader Inside</span>
+                                <span class="onoffswitch-title-desc">preloader will be inside content</span>
+                            </div>
+                            <div class="list" id="mpi">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-panel-icon"></a>
+                                <span class="onoffswitch-title">SmartPanel Icons (not Panels)</span>
+                                <span class="onoffswitch-title-desc">smartpanel buttons will appear as icons</span>
+                            </div>
+                            <div class="mt-4 d-table w-100 px-5">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Global Modifications
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list" id="mcbg">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-clean-page-bg"></a>
+                                <span class="onoffswitch-title">Clean Page Background</span>
+                                <span class="onoffswitch-title-desc">adds more whitespace</span>
+                            </div>
+                            <div class="list" id="mhni">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-hide-nav-icons"></a>
+                                <span class="onoffswitch-title">Hide Navigation Icons</span>
+                                <span class="onoffswitch-title-desc">invisible navigation icons</span>
+                            </div>
+                            <div class="list" id="dan">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-disable-animation"></a>
+                                <span class="onoffswitch-title">Disable CSS Animation</span>
+                                <span class="onoffswitch-title-desc">Disables CSS based animations</span>
+                            </div>
+                            <div class="list" id="mhic">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-hide-info-card"></a>
+                                <span class="onoffswitch-title">Hide Info Card</span>
+                                <span class="onoffswitch-title-desc">Hides info card from left panel</span>
+                            </div>
+                            <div class="list" id="mlph">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-lean-subheader"></a>
+                                <span class="onoffswitch-title">Lean Subheader</span>
+                                <span class="onoffswitch-title-desc">distinguished page header</span>
+                            </div>
+                            <div class="list" id="mnl">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-nav-link"></a>
+                                <span class="onoffswitch-title">Hierarchical Navigation</span>
+                                <span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+                            </div>
+                            <div class="list" id="mdn">
+                                <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle" data-class="mod-nav-dark"></a>
+                                <span class="onoffswitch-title">Dark Navigation</span>
+                                <span class="onoffswitch-title-desc">Navigation background is darkend</span>
+                            </div>
+                            <hr class="mb-0 mt-4">
+                            <div class="mt-4 d-table w-100 pl-5 pr-3">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0">
+                                        Global Font Size
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="list mt-1">
+                                <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-sm" data-target="html">
+                                        <input type="radio" name="changeFrontSize"> SM
+                                    </label>
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text" data-target="html">
+                                        <input type="radio" name="changeFrontSize" checked=""> MD
+                                    </label>
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-lg" data-target="html">
+                                        <input type="radio" name="changeFrontSize"> LG
+                                    </label>
+                                    <label class="btn btn-default btn-sm" data-action="toggle-swap" data-class="root-text-xl" data-target="html">
+                                        <input type="radio" name="changeFrontSize"> XL
+                                    </label>
+                                </div>
+                                <span class="onoffswitch-title-desc d-block mb-0">Change <strong>root</strong> font size to effect rem
+                                    values (resets on page refresh)</span>
+                            </div>
+                            <hr class="mb-0 mt-4">
+                            <div class="mt-4 d-table w-100 pl-5 pr-3">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0 pr-2 d-flex">
+                                        Theme colors
+                                        <a href="#" class="ml-auto fw-400 fs-xs" data-toggle="popover" data-trigger="focus" data-placement="top" title="" data-html="true" data-content="The settings below uses <code>localStorage</code> to load the external <strong>CSS</strong> file as an overlap to the base css. Due to network latency and <strong>CPU utilization</strong>, you may experience a brief flickering effect on page load which may show the intial applied theme for a split second. Setting the prefered style/theme in the header will prevent this from happening." data-original-title="<span class='text-primary'><i class='fal fa-exclamation-triangle mr-1'></i> Heads up!</span>" data-template="<div class=&quot;popover bg-white border-white&quot; role=&quot;tooltip&quot;><div class=&quot;arrow&quot;></div><h3 class=&quot;popover-header bg-transparent&quot;></h3><div class=&quot;popover-body fs-xs&quot;></div></div>"><i class="fal fa-info-circle mr-1"></i> more info</a>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="expanded theme-colors pl-5 pr-3">
+                                <ul class="m-0">
+                                    <li>
+                                        <a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme="" data-toggle="tooltip" data-placement="top" title="Wisteria (base css)" data-original-title="Wisteria (base css)"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-1" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top" title="Tapestry" data-original-title="Tapestry"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-2" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top" title="Atlantis" data-original-title="Atlantis"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-3" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top" title="Indigo" data-original-title="Indigo"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-4" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-5" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top" title="Tradewind" data-original-title="Tradewind"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-6" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top" title="Cranberry" data-original-title="Cranberry"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-7" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-8" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top" title="Chetwode Blue" data-original-title="Chetwode Blue"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-9" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top" title="Apricot" data-original-title="Apricot"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-10" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-11" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-12" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top" title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-13" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top" title="Emerald" data-original-title="Emerald"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-14" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-14.css" data-toggle="tooltip" data-placement="top" title="Supernova" data-original-title="Supernova"></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="myapp-15" data-action="theme-update" data-themesave data-theme="css/themes/cust-theme-15.css" data-toggle="tooltip" data-placement="top" title="Hoki" data-original-title="Hoki"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr class="mb-0 mt-4">
+                            <div class="mt-4 d-table w-100 pl-5 pr-3">
+                                <div class="d-table-cell align-middle">
+                                    <h5 class="p-0 pr-2 d-flex">
+                                        Theme Modes (beta)
+                                        <a href="#" class="ml-auto fw-400 fs-xs" data-toggle="popover" data-trigger="focus" data-placement="top" title="" data-html="true" data-content="This is a brand new technique we are introducing which uses CSS variables to infiltrate color options. While this has been working nicely on modern browsers without much issues, some users <strong>may still face issues on Internet Explorer </strong>. Until these issues are resolved or Internet Explorer improves, this feature will remain in Beta" data-original-title="<span class='text-primary'><i class='fal fa-question-circle mr-1'></i> Why beta?</span>" data-template="<div class=&quot;popover bg-white border-white&quot; role=&quot;tooltip&quot;><div class=&quot;arrow&quot;></div><h3 class=&quot;popover-header bg-transparent&quot;></h3><div class=&quot;popover-body fs-xs&quot;></div></div>"><i class="fal fa-question-circle mr-1"></i> why beta?</a>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="pl-5 pr-3 py-3">
+                                <div class="ie-only alert alert-warning d-none">
+                                    <h6>Internet Explorer Issue</h6>
+                                    This particular component may not work as expected in Internet Explorer. Please use with caution.
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-4 pr-2 text-center">
+                                        <div id="skin-default" data-action="toggle-replace" data-replaceclass="mod-skin-light mod-skin-dark" data-class="" data-toggle="tooltip" data-placement="top" title="" class="d-flex bg-white border border-primary rounded overflow-hidden text-success js-waves-on" data-original-title="Default Mode" style="height: 80px">
+                                            <div class="bg-primary-600 bg-primary-gradient px-2 pt-0 border-right border-primary"></div>
+                                            <div class="d-flex flex-column flex-1">
+                                                <div class="bg-white border-bottom border-primary py-1"></div>
+                                                <div class="bg-faded flex-1 pt-3 pb-3 px-2">
+                                                    <div class="py-3" style="background:url('img/demo/s-1.png') top left no-repeat;background-size: 100%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        Default
+                                    </div>
+                                    <div class="col-4 px-1 text-center">
+                                        <div id="skin-light" data-action="toggle-replace" data-replaceclass="mod-skin-dark" data-class="mod-skin-light" data-toggle="tooltip" data-placement="top" title="" class="d-flex bg-white border border-secondary rounded overflow-hidden text-success js-waves-on" data-original-title="Light Mode" style="height: 80px">
+                                            <div class="bg-white px-2 pt-0 border-right border-"></div>
+                                            <div class="d-flex flex-column flex-1">
+                                                <div class="bg-white border-bottom border- py-1"></div>
+                                                <div class="bg-white flex-1 pt-3 pb-3 px-2">
+                                                    <div class="py-3" style="background:url('img/demo/s-1.png') top left no-repeat;background-size: 100%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        Light
+                                    </div>
+                                    <div class="col-4 pl-2 text-center">
+                                        <div id="skin-dark" data-action="toggle-replace" data-replaceclass="mod-skin-light" data-class="mod-skin-dark" data-toggle="tooltip" data-placement="top" title="" class="d-flex bg-white border border-dark rounded overflow-hidden text-success js-waves-on" data-original-title="Dark Mode" style="height: 80px">
+                                            <div class="bg-fusion-500 px-2 pt-0 border-right"></div>
+                                            <div class="d-flex flex-column flex-1">
+                                                <div class="bg-fusion-600 border-bottom py-1"></div>
+                                                <div class="bg-fusion-300 flex-1 pt-3 pb-3 px-2">
+                                                    <div class="py-3 opacity-30" style="background:url('img/demo/s-1.png') top left no-repeat;background-size: 100%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        Dark
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mb-0 mt-4">
+                            <div class="pl-5 pr-3 py-3 bg-faded">
+                                <div class="row no-gutters">
+                                    <div class="col-6 pr-1">
+                                        <a href="#" class="btn btn-outline-danger fw-500 btn-block" data-action="app-reset">Reset Settings</a>
+                                    </div>
+                                    <div class="col-6 pl-1">
+                                        <a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Factory Reset</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <span id="saving"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Page Settings -->
+        <script src="js/config.js?v=1737037985100"></script>
+        <script src="js/vendors.bundle.js?v=1737037985100"></script>
+        <script src="js/i18n/i18n.js?v=1737037985100"></script>
+        <script src="js/notifications/toastr/toastr.js?v=1737037985100"></script>
+        <script src="js/notifications/sweetalert2/sweetalert2.bundle.js?v=1737037985100"></script>
+        <script src="js/formplugins/select2/select2.bundle.js?v=1737037985100"></script>
+        <script src="js/datagrid/datatables/datatables.bundle.js?v=1737037985100"></script>
+        <script src="js/formplugins/summernote/summernote.js?v=1737037985100"></script>
+        <script src="js/app.bundle.js?v=1737037985100"></script>
+        <script src="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+        <script src="js/content/encaissements/encaissements.js?v=1737037985100"></script>
+        <span id="app-name" style="display: none">Urgence</span>
+        <span id="app-version" style="display: none">0.0.1</span>
+    </body>
+    <!-- END Body -->
+</html>

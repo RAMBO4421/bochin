@@ -1,0 +1,82 @@
+{
+	"data":[
+	{
+		"DT_RowId":"1",
+		"libelle":"CONTRAT POUR CLINISYS",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Abandonné",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"type":"SMS",
+		"societe":"gold",
+		"VISVIS":"Hassen Ellouze",
+		"REPONSABLE":"Hassen Ellouze",
+		"OBSERVATEURS":"Hassen Ellouze,ayman,ammar"
+	},
+	{
+		"DT_RowId":"2",
+		"libelle":"CONTRAT POUR CLINISYS",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Accepté",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"type":"Facebook",
+		"societe":"gold",
+		"VISVIS":"Hassen Ellouze",
+		"REPONSABLE":"Hassen Ellouze",
+		"OBSERVATEURS":"Hassen Ellouze"
+	},
+	{
+		"DT_RowId":"3",
+		"libelle":"CONTRAT POUR CLINISYS",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Envoyé",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"type":"Email",
+		"societe":"gold",
+		"VISVIS":"Hassen Ellouze",
+		"REPONSABLE":"Hassen Ellouze",
+		"OBSERVATEURS":"Hassen Ellouze"
+	},
+	{
+		"DT_RowId":"4",
+		"libelle":"CONTRAT POUR CLINISYS",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Abandonné",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"type":"interdum.nunc@iaculis.ca",
+		"societe":"Publicité",
+		"VISVIS":"Hassen Ellouze",
+		"REPONSABLE":"Hassen Ellouze",
+		"OBSERVATEURS":"Hassen Ellouze"
+	},
+	{
+		"DT_RowId":"5",
+		"libelle":"CONTRAT POUR CLINISYS",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"Validé",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"type":"interdum.nunc@iaculis.ca",
+		"societe":"gold",
+		"VISVIS":"Hassen Ellouze",
+		"REPONSABLE":"Hassen Ellouze",
+		"OBSERVATEURS":"Hassen Ellouze"
+	},
+	{
+		"DT_RowId":"6",
+		"libelle":"CONTRAT POUR CLINISYS",
+		"description":"CONTRAT POUR CLINISYS",
+		"status":"DRAFT",
+		"adate":"2021-01-07",
+		"fdate":"2021-01-07",
+		"type":"Facebook",
+		"societe":"societe",
+		"VISVIS":"Hassen Ellouze",
+		"REPONSABLE":"Hassen Ellouze",
+		"OBSERVATEURS":"Hassen Ellouze"
+	}
+	]
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{{> include/_copyright-header}}
+<html lang="en">
+	<head>
+		{{> include/_head}}
+
+		{{!-- Optional: page related CSS --}}
+		{{#>head-block}}{{/head-block}}
+	</head>
+	<!-- BEGIN Body -->
+	<body class="mod-bg-1 mod-nav-link nav-function-hidden nav-function-top header-function-fixed {{preemptiveclass}}">
+
+		{{!-- save-settings-script --}}
+		{{> include/_scripts-loading-saving}}
+
+        <div id="example-modal-alert" tabindex="-1" role="dialog" style="display: none;z-index:99999999999999999999999;overflow: hidden; position: fixed; width: 100%; border: 0;background-color: #000;
+    opacity: 0.2;height: 100%">
+            <div class="modal-body">
+                <div class="d-flex justify-content-center" style="padding-top: 15%">
+                    <<div class="demo">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-border text-secondary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-border text-danger" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-border text-info" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-border text-light" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+		<!-- BEGIN Page Wrapper -->
+		<div class="page-wrapper">
+
+			<div class="page-inner">
+
+				{{> include/_left-panel }}
+
+				<div class="page-content-wrapper">
+
+					{{> include/_page-header }}
+
+					<!-- BEGIN Page Content -->
+					<!-- the #js-page-content id is needed for some plugins to initialize -->
+                    <main id="js-page-content" role="main" class="page-content">
+                        {{#if preemptiveclass}}
+                            <!-- Page heading removed for composed layout -->
+                        {{else}}
+                            {{> include/_page-breadcrumb }}
+                            <div class="subheader">{{> include/_page-heading }}{{#> subheader-block}}{{/subheader-block}}</div>
+                        {{/if}}
+                        {{#>content-block}}{{/content-block}}
+
+
+                    </main>
+					{{> include/_page-content-overlay }}
+					<!-- END Page Content -->
+
+					{{> include/_page-footer }}
+
+					{{> include/_shortcut-modal }}
+
+					{{> include/_color-profile-reference }}
+
+				</div>
+
+			</div>
+
+		</div>
+		<!-- END Page Wrapper -->
+
+		{{> include/_shortcut-messenger }}
+
+		{{> include/_page-settings }}
+
+		{{!-- Google Analytics  code if GOOGLE_ANALYTICS_ID id available --}}
+		{{> include/_google_analytics }}
+
+		{{> include/_scripts-base-plugins}}
+		{{#>scripts-block}}
+			{{!-- Custom scripts per page can be added. --}}
+		{{/scripts-block}}
+
+        <span id="app-name" style="display: none">{{app-name}}</span>
+        <span id="app-version" style="display: none">{{version}}</span>
+	</body>
+	<!-- END Body -->
+</html>

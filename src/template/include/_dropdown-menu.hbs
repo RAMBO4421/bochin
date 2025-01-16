@@ -1,0 +1,46 @@
+<div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
+	<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+		<span class="mr-2">
+			<img src="img/demo/avatars/{{avatar}}" class="rounded-circle profile-image" alt="{{user}}">
+		</span>
+		<div class="info-card-text">
+			<div id="username" class="fs-lg text-truncate text-truncate-lg"></div>
+			<span id="email" class="text-truncate text-truncate-md opacity-80"></span>
+		</div>
+	</div>
+</div>
+<div class="dropdown-divider m-0"></div>
+<a href="#" class="dropdown-item" data-action="app-reset">
+	<span data-i18n="drpdwn.reset_layout">Reset Layout</span>
+</a>
+<a href="#" class="dropdown-item" data-toggle="modal" data-target=".js-modal-settings">
+	<span data-i18n="drpdwn.settings">Settings</span>
+</a>
+<a href="release_notes.html" id="release_notes" class="dropdown-item" target="_blank">
+    <span data-i18n="drpdwn.release_notes">Release Notes</span>
+    <span>Build v {{{version}}}</span>
+</a>
+<div class="dropdown-divider m-0"></div>
+
+<a href="#" class="dropdown-item" data-action="app-fullscreen">
+	<span data-i18n="drpdwn.fullscreen">Fullscreen</span>
+	<i class="float-right text-muted fw-n">F11</i>
+</a>
+<a href="#" class="dropdown-item" data-action="app-print">
+	<span data-i18n="drpdwn.print">Print</span>
+	<i class="float-right text-muted fw-n">Ctrl + P</i>
+</a>
+<div class="dropdown-multilevel dropdown-multilevel-left">
+	<div class="dropdown-item">
+		Language
+	</div>
+	<div class="dropdown-menu">
+		<a id="lang_fr" href="#?lang=fr" class="dropdown-item" data-action="lang" data-lang="fr">Français</a>
+		<a id="lang_en" href="#?lang=en" class="dropdown-item" data-action="lang" data-lang="en">English (US)</a>
+	</div>
+</div>
+<div class="dropdown-divider m-0"></div>
+<a class="dropdown-item fw-500 pt-3 pb-3" href="page_login.html">
+	<span data-i18n="drpdwn.page-logout">Logout</span>
+	<span class="float-right fw-n">&commat;{{twitter}}</span>
+</a>

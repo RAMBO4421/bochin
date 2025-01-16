@@ -1,0 +1,32 @@
+{
+  "app": {
+    "name": "SmartAdmin"
+  },
+  "nav": {
+    "tableau_de_bord": "Dashboard"
+  },
+  "commons": {
+    "editer": "Edit"
+  },
+  "pages": {
+    "tableau_de_bord": {
+      "Depenses": "Expenses",
+      "Revenus": "Income",
+      "Nouveaux_devis": "New quotes",
+      "Nouveaux_contrats": "New contracts"
+    }
+  },
+  "drpdwn": {
+    "reset_layout": "Reset Layout",
+    "settings": "Settings",
+    "release_notes": "Release Notes",
+    "fullscreen": "Fullscreen",
+    "print": "Print",
+    "page-logout": "Logout"
+  },
+  "message": {
+    "succes": "The action is performed successfully",
+    "echec": "The action is not performed !",
+    "echechAuth": "Please verify your username or password !"
+  }
+}

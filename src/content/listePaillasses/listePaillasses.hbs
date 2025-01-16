@@ -1,0 +1,98 @@
+{{#>
+layouts/main
+title="Liste des paillasses"
+}}
+
+{{#*inline "head-block"}}
+<link rel="stylesheet" href="css/formplugins/select2/select2.bundle.css?v={{random}}">
+<link rel="stylesheet" media="screen, print" href="css/theme-demo.css?v={{random}}">
+<link rel="stylesheet" href="css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
+
+<link rel="stylesheet" media="screen, print" href="css/content/listePaillasses/listePaillasses.css?v={{random}}">
+
+{{/inline}}
+
+{{#*inline "content-block"}}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-container show">
+                <div class="panel-content p-0">
+                    <!-- boutons -->
+                    <div class="row m-0 p-0" id="rowHautBtns">
+                        <div class="col d-flex justify-content-end csysMenuTop">
+                            <button class="zoneRaffesh" table="Message" id="Btn-Actualiser">
+                                        <i class="fal fa-sync-alt fa-lg fa-solid"></i>
+                            </button> 
+                            <button class="btn btn-outline-default mr-1 flex-shrink-0 waves-effect waves-themed"
+                                id="Btn-Ajouter"><span class="fal mr-1 txt-color-green fa-plus fa-lg"></span> <span
+                                    data-i18n="commons.add"></span> </button>
+                            
+                        </div>
+                    </div>
+
+                    
+                    <!-- Liste des paillasses -->
+                    <div class="row">
+                        <div class="col-xl-12" style="height: 100% ; width: 100%;">
+                            <table id="dt_listPaillasses" href="#"
+                                class="table table-bordered table-hover table-striped w-100 table-sm table-container"  data-first-draw="true">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Action Modal "-->
+<div class="modal fade show" id="modalPaillasse" tabindex="-1" role="dialog"    aria-hidden= "true"  >
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header bg-trans-gradient2 "style="padding: 0.5rem 1rem;">
+               
+                <h5 class="color-white text-center" id="modalTitle"> </h5>
+                <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+                    data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="{{iconPrefix}} fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <div class=" row mb-4">   
+                    <label class="form-label col-4  " for="txtcode" data-i18n="commons.code"></label>
+                     <input type="text" id="txtcode" class="form-control col-6 "  data-i18n="[placeholder]commons.code" readonly>
+                </div>
+
+                <div class=" row mb-4" >
+                    <label class="form-label col-4 " for="txtdesignation" data-i18n="commons.designation"></label>
+                    <input type="text" id="txtdesignation" maxlength="100" class="form-control  col-6 "data-i18n="[placeholder]commons.designation"required >
+                </div>
+                <div class=" row mb-4 " >
+                    <label class="form-label col-4 " for="txtordre" data-i18n="commons.ordre"></label>
+                     <input type="number"   min="1" id="txtordre" class="form-control  col-6 "data-i18n="[placeholder]commons.ordre" required>
+                </div>                
+            </div>
+        
+            <div class="modal-footer" style="padding: 0.5rem 1rem;">
+                <button type="button" class="btn btn-primary  modal-button"  id="btnVld" data-i18n="commons.valider"></button>
+                 <button type="button" class="btn btn-secondary modal-button  "data-dismiss="modal"  data-i18n="commons.fermer" ></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{/inline}}
+
+{{#*inline "scripts-block"}}
+
+
+<script src="js/content/listePaillasses/listePaillasses.js?v={{random}}"></script>
+
+
+{{/inline}}
+
+{{/layouts/main}}
